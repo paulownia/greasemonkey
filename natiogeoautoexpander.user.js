@@ -4,7 +4,7 @@
 // @description    ナショジオの記事の続きを自動的に表示する
 // @include        http://www.nationalgeographic.co.jp/news/news_article.php?file_id=*
 // ==/UserScript==
-if (location.search.indexOf("expand") > 0) {
+if (!isTarget()) {
 	return;
 }
 var xmlHttp = new XMLHttpRequest();
@@ -39,4 +39,22 @@ function getExpandLocation() {
 	var fileId = query.split("&").filter(function(e){ return e.indexOf("file_id") > -1 }).join("&");
 	var url = location.href.substring(0, location.href.indexOf("?")) + "?" +  fileId + "&expand";
 	return url;
+}
+
+function isTarget() {
+	if (location.search.indexOf("expand") > 0) {
+		return false;
+	}
+	var links = document.getElementsByTagName("a");
+	for (var i = 0, l = links.length; i < l ; i++) {
+		var link = links[i];
+		var href = link.getAttribute("href");
+		if (!href) { 
+			continue;
+		}
+		if (href.indexOf("expand#title") > 0) {
+			return true;
+		}
+	}
+	return false;
 }
