@@ -1,0 +1,18 @@
+h1. Greasemonkey Scripts
+
+h2. googleNotInJapanese.user.js
+
+Google検索結果の左サイドバーに「日本語以外で検索」というリンクを付けます。日本語以外で書かれたサイトが検索対象となります。
+
+h2. hatenawarp.user.js
+
+はてなのサービス間を移動するリンクを左下に作成します。普段は透明ですが、マウスオーバーすると現れます。
+
+h2. natiogeoautoexpander.user.js
+
+ナショナルジオグラフィックスのニュースを自動的に全文表示します。
+
+
+h2. slashdotlink.user.js
+
+スラドJの外部リンクを、リンククッションページを表示せずダイレクトにリンク先に飛ぶように修正します。※現在のスラドにはクッションページが無いので不要です。
