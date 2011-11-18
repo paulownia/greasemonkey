@@ -11,6 +11,7 @@
 // @exclude        http://d.hatena.ne.jp/keyword/*
 // @exclude        http://d.hatena.ne.jp/hotkeyword*
 // @exclude        http://cdn.api.b.hatena.ne.jp/*
+// @exclude        http://blog.hatena.ne.jp/*
 
 // ==/UserScript==
 if (location.pathname.length == 1) {
