@@ -22,6 +22,7 @@ xmlHttp.onload = function() {
 	if (result && result.length) {
 		var exDoc = document.implementation.createHTMLDocument("");
 		var exRange = exDoc.createRange();
+		exRange.selectNodeContents(document.body);
 		exDoc.documentElement.appendChild(exRange.createContextualFragment(result[0]));
 	
 		var expandedArticle = exDoc.getElementsByClassName("story")[0] || exDoc.getElementsByClassName("galleryContentWell")[0];
