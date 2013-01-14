@@ -10,11 +10,11 @@
 function getAllLangLocation() {
 	var allLang = document.getElementById("lr_");
 	if (!allLang) {
-		return createAllLangLocation();	
+		return createAllLangLocation();
 	}
 	var a = allLang.querySelector("a");
 	if (!a) {
-		return createAllLangLocation();	
+		return createAllLangLocation();
 	}
 	return a.getAttribute("href");
 }
@@ -37,8 +37,8 @@ function createAllLangLocation() {
 }
 
 function createNonJapanese () {
-	var href;
 
+	var href;
 	var onlyJa = document.getElementById("lr_lang_1ja");
 	if (onlyJa) {
 		var a = onlyJa.querySelector("a");
@@ -67,7 +67,7 @@ function createNonJapanese () {
 
 function createLink(href, label) {
 	var li = document.createElement("li");
-	li.setAttribute("class","tbou");
+	li.setAttribute("class","hdtbItm");
 
 	var a= document.createElement("a");
 	a.setAttribute("class", "q qs");
@@ -81,9 +81,13 @@ function createLink(href, label) {
 
 createNonJapanese();
 
-document.addEventListener("DOMNodeInserted", function(e){ 
-	var id = e.target.getAttribute("id");
-	if (id == "leftnav") {
-		createNonJapanese();
-	}
-}, false);
+var observer = new MutationObserver(function(mutations){
+	mutations.forEach(function(mutation) {
+		if (mutation.target.id === "top_nav") {
+			createNonJapanese();
+		}
+	});
+});
+
+var target = document.body;
+observer.observe(target, { childList: true , subtree: true});
