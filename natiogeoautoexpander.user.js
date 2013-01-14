@@ -6,8 +6,18 @@
 // ==/UserScript==
 
 window.addEventListener("load", function(){
-    if (switchDisp) {
-        switchDisp(1); 
+    var anchors = document.querySelectorAll("#DispDefault1 a");
+    for (var i = 0; i < anchors.length; i++) {
+    	var a = anchors[i];
+    	if (a.href === "javascript:;") {
+    		doClick(a);
+    	}
     }
 });
 
+
+function doClick(obj) {
+	var event = document.createEvent("MouseEvents");
+	event.initMouseEvent("click", true, true, null, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+	obj.dispatchEvent(event);
+}
