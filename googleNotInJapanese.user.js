@@ -1,6 +1,8 @@
 // ==UserScript==
 // @name           GoogleNotInJapanese
 // @namespace      http://paulownia.jp/
+// @version        1.1.0
+// @grant          none
 // @description    This script adds a link to exclude pages written in Japanese from google's search results.
 // @include        http://www.google.co.jp/search*
 // @include        http://www.google.com/search*
@@ -48,12 +50,12 @@ function createNonJapanese () {
 		} else {
 			href = getAllLangLocation() + "&lr=-lang_ja";
 		}
-		onlyJa.parentNode.insertBefore(createLink(href, "日本語以外を検索"), onlyJa.nextSibling);
+		onlyJa.parentNode.insertBefore(createLink(href, "日本語以外のページを検索"), onlyJa.nextSibling);
 	}
 	
 	var notJa = document.getElementById("lr_-lang_1ja");
 	if (notJa) {
-		notJa.textContent = "日本語以外を検索";
+		notJa.textContent = "日本語以外のページを検索";
 		href = notJa.querySelector("a");
 		if (a) {
 			href = a.getAttribute("href");
@@ -62,6 +64,8 @@ function createNonJapanese () {
 			href = getAllLangLocation() + "&lr=lang_ja";
 		}
 		notJa.parentNode.insertBefore(createLink(href, "日本語のページを検索"), notJa);
+		
+		document.querySelectorAll("#hdtbMenus .mn-hd-txt")[0].textContent = "日本語以外のページを検索";
 	}
 }
 
@@ -84,7 +88,7 @@ createNonJapanese();
 var MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
 var observer = new MutationObserver(function(mutations){
 	mutations.forEach(function(mutation) {
-		if (mutation.target.id === "top_nav") {
+		if (mutation.target.id === "hdtbMenus") {
 			createNonJapanese();
 		}
 	});
