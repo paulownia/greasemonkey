@@ -1,12 +1,11 @@
 // ==UserScript==
 // @name           GoogleNotInJapanese
 // @namespace      http://paulownia.jp/
-// @version        1.1.1
+// @version        1.2.0
 // @grant          none
-// @description    This script adds a link to exclude pages written in Japanese from google's search results.
-// @include        https://www.google.co.jp/*
-// @include        https://www.google.com/*
-// @exclude        https://www.google.com/settings/*
+// @description    add a menu item to display search results excluding pages written in Japanese
+// @include        https://www.google.co.jp/search*
+// @include        https://www.google.com/search*
 // ==/UserScript==
 function getAllLangLocation() {
   var allLang = document.getElementById('lr_');
