@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name           GoogleNotInJapanese
 // @namespace      tag:nullpon.moe,2018-11-07:greasemonkey
-// @version        1.2.1
+// @version        1.2.2
 // @grant          none
 // @description    add a menu item to display search results excluding pages written in Japanese
 // @include        https://www.google.co.jp/search*
@@ -64,8 +64,8 @@ function createLink(href, label) {
 
 createNonJapanese();
 
-const observer = new MutationObserver(function(mutations){
-  mutations.forEach(function(mutation) {
+const observer = new MutationObserver(mutations => {
+  mutations.forEach(mutation => {
     if (mutation.target.id === 'hdtbMenus') {
       createNonJapanese();
     }
