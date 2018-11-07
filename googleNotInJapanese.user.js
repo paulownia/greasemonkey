@@ -1,48 +1,29 @@
 // ==UserScript==
 // @name           GoogleNotInJapanese
 // @namespace      http://paulownia.jp/
-// @version        1.2.0
+// @version        1.2.1
 // @grant          none
 // @description    add a menu item to display search results excluding pages written in Japanese
 // @include        https://www.google.co.jp/search*
 // @include        https://www.google.com/search*
 // ==/UserScript==
 function getAllLangLocation() {
-  var allLang = document.getElementById('lr_');
-  if (!allLang) {
-    return createAllLangLocation();
+  const allLang = document.getElementById('lr_');
+  if (allLang) {
+    const a = allLang.querySelector('a');
+    if (a) {
+      return a.getAttribute('href');
+    }
   }
-  var a = allLang.querySelector('a');
-  if (!a) {
-    return createAllLangLocation();
-  }
-  return a.getAttribute('href');
-}
-
-function createAllLangLocation() {
-  if (location.hashes.length > 1) {
-    var q = (function(){
-      var hashes =  location.hashes.substring(1).split('&');
-      for (var i=0,  l=hashes.length; i < l; i++) {
-        if (hashes[i].indexOf('q=') === 0) {
-          return hashes[i];
-        }
-      }
-      return '';
-    })();
-    return location.pathname + location.search.replaceAll(/lr=[^?#&]+?[?#&]/, '').replaceAll(/q=[^?#&]+?([?#&])/, q + '$1');
-  } else {
-    return location.pathname + location.search.replaceAll(/lr=[^?#&]+?[?#&]/, '');
-  }
+  return location.pathname + location.search.replace(/lr=[^?#&]+?[?#&]/g, '');
 }
 
 function createNonJapanese () {
+  let href;
 
-  var href, a;
-
-  var onlyJa = document.getElementById('lr_lang_1ja');
+  const onlyJa = document.getElementById('lr_lang_1ja');
   if (onlyJa) {
-    a = onlyJa.querySelector('a');
+    const a = onlyJa.querySelector('a');
     if (a) {
       href = a.getAttribute('href');
       href = href.replace('lr=lang_ja', 'lr=-lang_ja');
@@ -52,9 +33,9 @@ function createNonJapanese () {
     onlyJa.parentNode.insertBefore(createLink(href, '日本語以外のページを検索'), onlyJa.nextSibling);
   }
 
-  var notJa = document.getElementById('lr_-lang_1ja');
+  const notJa = document.getElementById('lr_-lang_1ja');
   if (notJa) {
-    a = notJa.querySelector('a');
+    const a = notJa.querySelector('a');
     if (a) {
       href = a.getAttribute('href');
       href = href.replace('lr=-lang_ja', 'lr=lang_ja');
@@ -68,10 +49,10 @@ function createNonJapanese () {
 }
 
 function createLink(href, label) {
-  var li = document.createElement('li');
+  const li = document.createElement('li');
   li.setAttribute('class','hdtbItm');
 
-  var a= document.createElement('a');
+  const a= document.createElement('a');
   a.setAttribute('class', 'q qs');
   a.setAttribute('href', href);
   a.textContent = label;
@@ -83,8 +64,7 @@ function createLink(href, label) {
 
 createNonJapanese();
 
-var MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
-var observer = new MutationObserver(function(mutations){
+const observer = new MutationObserver(function(mutations){
   mutations.forEach(function(mutation) {
     if (mutation.target.id === 'hdtbMenus') {
       createNonJapanese();
@@ -92,5 +72,4 @@ var observer = new MutationObserver(function(mutations){
   });
 });
 
-var target = document.body;
-observer.observe(target, { childList: true , subtree: true});
+observer.observe(document.body, { childList: true , subtree: true});
