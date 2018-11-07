@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           GoogleNotInJapanese
-// @namespace      http://paulownia.jp/
+// @namespace      tag:nullpon.moe,2018-11-07:greasemonkey
 // @version        1.2.1
 // @grant          none
 // @description    add a menu item to display search results excluding pages written in Japanese
