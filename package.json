@@ -1,0 +1,22 @@
+{
+  "name": "greasemonkey",
+  "version": "1.0.0",
+  "description": "h1. Greasemonkey Scripts",
+  "main": "googleNotInJapanese.user.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paulownia/greasemonkey.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/paulownia/greasemonkey/issues"
+  },
+  "homepage": "https://github.com/paulownia/greasemonkey#readme",
+  "dependencies": {
+    "eslint": "^5.8.0"
+  }
+}
