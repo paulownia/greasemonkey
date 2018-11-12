@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         githubTabSize4
 // @namespace    tag:nullpon.moe,2018-11-07:greasemonkey
-// @version      0.1
+// @version      0.2
 // @description  change tab-size 4 on github
 // @match        https://github.com/*
 // @grant        none
