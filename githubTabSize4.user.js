@@ -7,7 +7,7 @@
 // @grant        none
 // ==/UserScript==
 
-(() => {
+function fixAttribute() {
   'use strict';
   const url = new URL(location.href);
   if (url.searchParams.has('ts')) {
@@ -24,4 +24,9 @@
   }
   // url.searchParams.set('ts', 4);
   // history.replaceState(history.state, window.title, url.toString());
-})();
+}
+
+fixAttribute();
+new MutationObserver(fixAttribute).observe(document.body, {childList: true});
+
+
