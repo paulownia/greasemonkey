@@ -16,7 +16,8 @@
     "url": "https://github.com/paulownia/greasemonkey/issues"
   },
   "homepage": "https://github.com/paulownia/greasemonkey#readme",
-  "dependencies": {
-    "eslint": "^6.0.0"
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^6.8.0"
   }
 }
